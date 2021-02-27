@@ -5,13 +5,13 @@ Using the CIFAR 10 dataset to train a CNN
 import numpy as np
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, BatchNormalization, Dropout, Conv2D, MaxPooling2D, Flatten
+from tensorflow.keras.layers import Dense, BatchNormalization, Dropout, Conv2D
+from tensorflow.keras.layers import MaxPooling2D, Flatten
 from tensorflow.keras import backend as K
 from tensorflow.keras.utils import to_categorical
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 import h5py
-import cv2
 
 
 def unpickle(file):
@@ -33,7 +33,7 @@ labels = dict(zip(code, category))
 # Read dict-like data
 x=batch[b'data']
 y=batch[b'labels']
-z=batch[b'filenames']
+
 
 #Train-Test-Split
 Xtrain, Xtest, ytrain, ytest = train_test_split(x,y)
@@ -80,8 +80,8 @@ hist = model.fit(Xtrain, ytrain_binary, epochs=epochs, batch_size= batchsize,
                  validation_split = 0.2)
 
 #Save model
-model.save('modeldata.hdf5')
-model.save_weights('CNN_CIFAR10.hdf5')
+model.save('modeldata_1.hdf5')
+model.save_weights('CNN_CIFAR10_1.hdf5')
 
 #Evaluate model
 model.evaluate(Xtest, ytest_binary)
